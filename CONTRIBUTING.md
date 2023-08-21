@@ -5,9 +5,24 @@ To clone the project run the following comand:
 git clone https://github.com/andrezaraquel/TODOListAPI.git
 ```
 
-For the next commands on this page, you must be at the **root** of the project
+### For the next commands on this page, you must be at the **root** of the project
 
-It's recommended to use a virtual enviroment in development:
+#### There are 3 simple environments where you can run this code. They are as follows:
+
+##### 1 - Using docker-compose:
+
+```bash
+docker compose up
+```
+
+##### 2 - Using Dockerfile (If, for some reason, you do not want to use docker-compose):
+
+```bash
+docker build --tag todo-list-compose .
+
+docker run -p 127.0.0.1:5000:5000 todo-list-compose
+```
+##### 2 -  Using a virtual enviroment
 
 ```bash
 python3 -m venv venv
