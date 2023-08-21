@@ -1,8 +1,11 @@
 # TODOListAPI
 
-Sample project to practice backend concepts learned in the "Back End Architecture" course as part of the "Distributed Software Architecture" post-graduate course from PUC Minas University.
+Sample back-end project to practice backend concepts learned in the "Distributed Software Architecture" post-graduate course from PUC Minas University.
 
-## Technologies
+## Concepts and Technologies
+- API Restful
+- Websevice
 - Python
 - Flask
 - REST/HTTP
+- Docker
