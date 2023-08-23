@@ -12,7 +12,7 @@ git clone https://github.com/andrezaraquel/TODOListAPI.git
 ##### 1 - Using docker-compose:
 
 ```bash
-docker-compose up
+docker-compose up --build --force-recreate
 ```
 
 ##### 2 - Using Dockerfile (If, for some reason, you do not want to use docker-compose):
