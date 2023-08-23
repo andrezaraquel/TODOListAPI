@@ -37,5 +37,5 @@ source venv/bin/activate
 To install the required libs, run the following command:
 
 ```bash
-pip install `cat requirements.txt`
+pip install -r requirements.txt 
 ```
