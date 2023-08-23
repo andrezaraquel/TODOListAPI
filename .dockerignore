@@ -1,3 +1,11 @@
 .git
 .vscode
 *_pycache_*
+
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
