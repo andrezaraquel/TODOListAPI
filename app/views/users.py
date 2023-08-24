@@ -19,3 +19,9 @@ def create_user():
         return jsonify({'message': 'successfully registered', 'data': result}), 201
     except:
         return jsonify({'message': 'unable to create', 'data': {}}), 500
+    
+def get_user_by_username(username):
+    try:
+        return Users.query.filter(Users.username == username).one()
+    except:
+        return None

@@ -1,11 +1,11 @@
 from app import app
 from flask import jsonify
-from ..views import users
-
-@app.route("/users", methods=['GET'])
-def get_users():
-    return jsonify({'message': 'Users list'})
+from ..views import users, helper
 
 @app.route("/users", methods=['POST'])
 def create_users():
     return users.create_user()
+
+@app.route('/auth', methods=['POST'])
+def authenticate():
+    return helper.auth()
