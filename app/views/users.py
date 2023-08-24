@@ -16,6 +16,6 @@ def create_user():
         db.session.add(user)
         db.session.commit()
         result = user_schema.dump(user)
-        return jsonify({'message': 'successfully registered', 'data': result.data}), 201
+        return jsonify({'message': 'successfully registered', 'data': result}), 201
     except:
         return jsonify({'message': 'unable to create', 'data': {}}), 500
