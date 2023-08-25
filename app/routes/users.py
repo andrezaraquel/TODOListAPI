@@ -5,7 +5,7 @@ from ..views import users, helper
 @app.route("/users/auth", methods=['GET'])
 @helper.token_required
 def hello(current_user):
-    return jsonify({'message': 'user authentiated', 'data': {'username': current_user.username}})
+    return jsonify({'message': 'user authentiated', 'data': {'username': current_user.username}}), 200
 
 @app.route("/users", methods=['POST'])
 def create_users():

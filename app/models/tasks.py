@@ -1,6 +1,7 @@
+from itsdangerous import Serializer
 from app import db, ma
 
-class Tasks(db.Model):
+class Tasks(db.Model, Serializer):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(40), nullable=False)
     description = db.Column(db.String(200))
@@ -12,7 +13,6 @@ class Tasks(db.Model):
         self.description = description
         self.status = status
         self.user_id = user_id
-    
     
 class TasksSchema(ma.Schema):
     class Meta:
