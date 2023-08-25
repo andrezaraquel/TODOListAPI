@@ -2,7 +2,7 @@ from app import app
 from flask import jsonify
 from ..views import users, helper
 
-@app.route("/hello", methods=['GET'])
+@app.route("/users/auth", methods=['GET'])
 @helper.token_required
 def hello(current_user):
     return jsonify({'message': 'user authentiated', 'data': {'username': current_user.username}})
@@ -11,6 +11,6 @@ def hello(current_user):
 def create_users():
     return users.create_user()
 
-@app.route('/auth', methods=['POST'])
+@app.route('/login', methods=['POST'])
 def authenticate():
     return helper.auth()

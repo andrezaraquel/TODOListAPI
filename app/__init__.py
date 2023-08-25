@@ -10,8 +10,9 @@ app.config.from_mapping(Config.config)
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
+from .models import users, tasks
+from .routes import users, tasks
+from .views import users, tasks
+
 with app.app_context():
     db.create_all()
-
-from .routes import routes
-from .models import users
