@@ -16,7 +16,7 @@ def add_task(current_user_id):
         result = task_schema.dump(task)
         return jsonify({'message': 'task created', 'data': result}), 201
     except:
-        return jsonify({'message': 'unable to create task', 'data': {}}), 500
+        return jsonify({'message': 'unable to create task', 'data': {}}), 401
     
 def get_task_by_id(task_id, user_id):
     try:
@@ -61,7 +61,7 @@ def edit_task(task_id, user_id):
     try:
         db.session.commit()
         result = task_schema.dump(task)
-        return jsonify({'message': 'task updated', 'data': result}), 201
+        return jsonify({'message': 'task updated', 'data': result}), 200
     except:
         return jsonify({'message': 'unable to update task', 'data': {}}), 401
     
@@ -75,6 +75,6 @@ def delete_task_by_id(task_id, user_id):
         db.session.delete(task)
         db.session.commit()
         result = task_schema.dump(task)
-        return jsonify({'message': 'task deleted', 'data': result}), 201
+        return jsonify({'message': 'task deleted', 'data': result}), 200
     except:
         return jsonify({'message': 'unable to delete task', 'data': {}}), 401
