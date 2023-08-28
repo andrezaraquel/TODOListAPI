@@ -7,7 +7,7 @@ git clone https://github.com/andrezaraquel/TODOListAPI.git
 
 ### For the next commands on this page, you must be at the **root** of the project
 
-#### There are 3 simple ways to run this code and install all dependencies. They are as follows:
+#### There are 2 simple ways to run this code and install all dependencies. They are as follows:
 
 ##### 1 - Using docker-compose:
 
@@ -15,13 +15,6 @@ git clone https://github.com/andrezaraquel/TODOListAPI.git
 docker-compose up --build --force-recreate
 ```
 
-##### 2 - Using Dockerfile (If, for some reason, you do not want to use docker-compose):
-
-```bash
-docker build --tag todo-list-compose .
-
-docker run -p 127.0.0.1:5000:5000 todo-list-compose
-```
 ##### 2 -  Using a virtual environment
 
 ```bash
