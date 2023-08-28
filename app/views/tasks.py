@@ -40,9 +40,9 @@ def get_tasks(user_id):
         return None
     
 def edit_task(task_id, user_id):  
-    try:
-        task = Tasks.query.filter(Tasks.id == task_id, Tasks.user_id == user_id).one()
-    except:
+  
+    task = Tasks.query.filter(Tasks.id == task_id, Tasks.user_id == user_id).first()
+    if not task:
         return jsonify({'message': 'could not find task', 'data': {}}), 401
 
     try:
@@ -66,9 +66,8 @@ def edit_task(task_id, user_id):
         return jsonify({'message': 'unable to update task', 'data': {}}), 401
     
 def delete_task_by_id(task_id, user_id):
-    try:    
-        task = Tasks.query.filter(Tasks.id == task_id, Tasks.user_id == user_id).one()
-    except:
+    task = Tasks.query.filter(Tasks.id == task_id, Tasks.user_id == user_id).first()
+    if not task:
         return jsonify({'message': 'could not find task', 'data': {}}), 401
     
     try:
