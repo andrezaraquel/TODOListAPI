@@ -19,9 +19,7 @@ def auth():
         expiration = datetime.datetime.now() + datetime.timedelta(hours=12)
         token = jwt.encode({'username': user.username, 'exp': expiration}, app.config['SECRET_KEY'], algorithm='HS256')
         return jsonify({'message': 'validated successfully', 'exp': expiration, 'token': token}), 200
-    
-    else:
-        return jsonify({'message': 'incorrect password', 'data': {}}), 401
+    return jsonify({'message': 'incorrect password', 'data': {}}), 401
     
 def token_required(func):
     @wraps(func)

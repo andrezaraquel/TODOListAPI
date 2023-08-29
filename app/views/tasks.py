@@ -1,22 +1,21 @@
 from app import db
-from flask import request, jsonify
+from flask import request
 from ..models.tasks import Tasks, task_schema, tasks_schema
 
 def add_task(current_user_id):
-    title = request.json['title']
-    description = request.json['description']
-    status = request.json['status']
-    user_id = current_user_id
-    
-    task = Tasks(title, description, status, user_id)
-
     try:
+        title = request.json['title']
+        description = request.json['description']
+        status = request.json['status']
+        user_id = current_user_id
+
+        task = Tasks(title, description, status, user_id)
+
         db.session.add(task)
         db.session.commit()
-        result = task_schema.dump(task)
-        return jsonify({'message': 'task created', 'data': result}), 201
+        return task_schema.dump(task)
     except:
-        return jsonify({'message': 'unable to create task', 'data': {}}), 401
+        return None
     
 def get_task_by_id(task_id, user_id):
     try:
@@ -40,11 +39,7 @@ def get_tasks(user_id):
         return None
     
 def edit_task(task_id, user_id):  
-  
     task = Tasks.query.filter(Tasks.id == task_id, Tasks.user_id == user_id).first()
-    if not task:
-        return jsonify({'message': 'could not find task', 'data': {}}), 401
-
     try:
         task.title = request.json['title']
     except:
@@ -60,20 +55,15 @@ def edit_task(task_id, user_id):
             
     try:
         db.session.commit()
-        result = task_schema.dump(task)
-        return jsonify({'message': 'task updated', 'data': result}), 200
+        return task_schema.dump(task)
     except:
-        return jsonify({'message': 'unable to update task', 'data': {}}), 401
+        return None
     
 def delete_task_by_id(task_id, user_id):
-    task = Tasks.query.filter(Tasks.id == task_id, Tasks.user_id == user_id).first()
-    if not task:
-        return jsonify({'message': 'could not find task', 'data': {}}), 401
-    
     try:
+        task = Tasks.query.filter(Tasks.id == task_id, Tasks.user_id == user_id).first()
         db.session.delete(task)
         db.session.commit()
-        result = task_schema.dump(task)
-        return jsonify({'message': 'task deleted', 'data': result}), 200
+        return task_schema.dump(task)
     except:
-        return jsonify({'message': 'unable to delete task', 'data': {}}), 401
+        return None
