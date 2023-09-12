@@ -26,9 +26,16 @@ After setup, the development is activated through the command:
 ```bash
 source venv/bin/activate
 ```
+Install the PostgreSQL database. Then, set the correct credentials in the .env file.
 
 To install the required libs, run the following command:
 
 ```bash
 pip install -r requirements.txt 
+```
+
+Then run the following command to start the application:
+
+```bash
+python -m flask --app app/main run --debug --host=0.0.0.0
 ```
