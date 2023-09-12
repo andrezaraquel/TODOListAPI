@@ -3,8 +3,8 @@ from app import app
 from flask import jsonify, request
 
 from . import auth
-from ..models.users import Users
-from ..views.users import *
+from ..models.users import Users as users_model
+from ..views import users as users_view
 
 @app.route("/users/auth", methods=['GET'])
 @auth.token_required
@@ -13,14 +13,18 @@ def hello(current_user):
 
 @app.route("/users", methods=['POST'])
 def create_users():
-    username = request.json['username']
-    password = request.json['password']
-    name = request.json['name']
+    try:
+        username = request.json['username']
+        password = request.json['password']
+        name = request.json['name']
+    except:
+        return users_view.create_user_bad_request()
+
     pass_hash = generate_password_hash(password)
-    result = Users.create_user(username, pass_hash, name)
+    result = users_model.create_user(username, pass_hash, name)
     if isinstance(result, dict):
-        return successfully_registered(result)
-    return unable_to_create_user(result)
+        return users_view.successfully_registered(result)
+    return users_view.unable_to_create_user(result)
 
 @app.route('/login', methods=['POST'])
 def authenticate():

@@ -11,3 +11,6 @@ def successfully_validated(expiration, token):
 
 def validation_failed(message):
     return jsonify({'message': message, 'data': {}}), 401
+
+def create_user_bad_request():
+    return jsonify({'message': 'the request body must contain "username", "password" and "name"', 'data': {}}), 401

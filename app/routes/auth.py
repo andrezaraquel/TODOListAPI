@@ -11,17 +11,17 @@ def auth():
     auth = request.authorization
     if not auth or not auth.username or not auth.password:
         return validation_failed('login required')
-    
+
     user = Users.get_user_by_username(auth.username)
     if not user:
         return validation_failed('user not found')
-    
+
     if user and check_password_hash(user.password, auth.password):
         expiration = datetime.datetime.now() + datetime.timedelta(hours=12)
         token = jwt.encode({'username': user.username, 'exp': expiration}, app.config['SECRET_KEY'], algorithm='HS256')
         return successfully_validated(expiration, token)
     return validation_failed('incorrect password')
-    
+
 def token_required(func):
     @wraps(func)
     def decorated(*args, **kwargs):

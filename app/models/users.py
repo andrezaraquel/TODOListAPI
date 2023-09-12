@@ -10,9 +10,9 @@ class Users(db.Model):
         self.username = username
         self.password = password
         self.name = name
-    
+
     def create_user(username, pass_hash, name):
-        try:       
+        try:
             user = Users(username, pass_hash, name)
             db.session.add(user)
             db.session.commit()
