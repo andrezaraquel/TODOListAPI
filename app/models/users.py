@@ -10,6 +10,21 @@ class Users(db.Model):
         self.username = username
         self.password = password
         self.name = name
+    
+    def create_user(username, pass_hash, name):
+        try:       
+            user = Users(username, pass_hash, name)
+            db.session.add(user)
+            db.session.commit()
+            return user_schema.dump(user)
+        except Exception as error:
+            return str(error.args)
+
+    def get_user_by_username(username):
+        try:
+            return Users.query.filter(Users.username == username).one()
+        except Exception as error:
+            return str(error.args)
 
 class UsersSchema(ma.Schema):
     class Meta:
